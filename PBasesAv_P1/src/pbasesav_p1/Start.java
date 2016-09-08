@@ -5,6 +5,16 @@
  */
 package pbasesav_p1;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import structures.Cluster;
+import structures.Institucion;
+import structures.Oficina;
+import structures.Proyecto;
+
 /**
  *
  * @author fangi
@@ -14,7 +24,22 @@ public class Start extends javax.swing.JFrame {
     /**
      * Creates new form Start
      */
+        Institucion[] instutuciones;
+    Oficina[] oficinas;
+    Cluster[] clusters;
+    Proyecto[] proyectos;
+       public void cambiarVentana(JFrame frame) {
+        frame.setVisible(true);
+        this.dispose();
+    }
     public Start() {
+       try {
+            Connection con = Conexion.getConexion();
+            
+        instutuciones=Conexion.rstoInstituciones(con, "select * from institucion ", null);
+        } catch (SQLException ex) {
+            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
     }
 
