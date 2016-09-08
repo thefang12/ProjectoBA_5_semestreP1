@@ -61,3 +61,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+/PBasesAv_P1/build/

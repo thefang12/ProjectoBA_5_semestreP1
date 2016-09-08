@@ -27,57 +27,197 @@ public class Start extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+
+        Login = new javax.swing.JButton();
+        Buscar = new javax.swing.JButton();
+        RegistroP = new javax.swing.JButton();
+        logo = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
+        modificar = new javax.swing.JButton();
+        crearP = new javax.swing.JButton();
+        usuario = new javax.swing.JTextField();
+        contraseña = new javax.swing.JTextField();
+        buscar = new javax.swing.JTextField();
+        institucion = new javax.swing.JComboBox<>();
+        oficina = new javax.swing.JComboBox<>();
+        cluster = new javax.swing.JComboBox<>();
+        ChechBInv = new javax.swing.JCheckBox();
+        CheckBOT = new javax.swing.JCheckBox();
+        Resultados = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Login");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 50, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 141, -1));
 
-        jLabel2.setText("Usuario:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, -1, -1));
-
-        jLabel3.setText("Contraseña:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
-
-        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Login/logo2.png"))); // NOI18N
-        jToggleButton3.setBorderPainted(false);
-        jToggleButton3.setContentAreaFilled(false);
-        getContentPane().add(jToggleButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 21, 300, 166));
-
-        jToggleButton2.setText("Entrar");
-        getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, -1, -1));
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 140, -1));
-
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Login/background.jpg"))); // NOI18N
-        jToggleButton1.setBorderPainted(false);
-        jToggleButton1.setContentAreaFilled(false);
-        jToggleButton1.setFocusPainted(false);
-        jToggleButton1.setFocusable(false);
-        jToggleButton1.setRequestFocusEnabled(false);
-        jToggleButton1.setRolloverEnabled(false);
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        Login.setText("Login");
+        Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                LoginActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 600));
+        getContentPane().add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 25, -1, -1));
+
+        Buscar.setText("Buscar");
+        getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 359, -1, -1));
+
+        RegistroP.setForeground(new java.awt.Color(60, 63, 65));
+        RegistroP.setText("Registro Proyecto");
+        RegistroP.setBorderPainted(false);
+        RegistroP.setEnabled(false);
+        RegistroP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistroPActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegistroP, new org.netbeans.lib.awtextra.AbsoluteConstraints(603, 91, -1, -1));
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Login/logo2.png"))); // NOI18N
+        logo.setBorderPainted(false);
+        getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+
+        eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 359, -1, -1));
+
+        modificar.setText("Modificar");
+        getContentPane().add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 360, -1, -1));
+
+        crearP.setForeground(new java.awt.Color(60, 63, 65));
+        crearP.setText("Crear Proyecto");
+        crearP.setBorderPainted(false);
+        crearP.setEnabled(false);
+        getContentPane().add(crearP, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 130, -1, -1));
+
+        usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 29, 78, -1));
+        getContentPane().add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(544, 29, 79, -1));
+
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 301, 255, -1));
+
+        institucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        institucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                institucionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(institucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 170, 190, -1));
+
+        oficina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(oficina, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 214, 190, -1));
+
+        cluster.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(cluster, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 255, 190, -1));
+
+        ChechBInv.setText("Investigadores");
+        ChechBInv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChechBInvActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ChechBInv, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 301, -1, -1));
+
+        CheckBOT.setText("OT´s");
+        getContentPane().add(CheckBOT, new org.netbeans.lib.awtextra.AbsoluteConstraints(581, 301, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Proyecto"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        Resultados.setViewportView(jScrollPane1);
+
+        getContentPane().add(Resultados, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 409, 525, 230));
+
+        jLabel1.setText("Usuario");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(338, 33, -1, -1));
+
+        jLabel2.setText("Contraseña");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(472, 33, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setText("Instituciones:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 170, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel4.setText("Oficina:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 212, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel5.setText("Clusters");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 254, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setText("Buscar");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 299, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+
+    private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_LoginActionPerformed
+
+    private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuarioActionPerformed
+
+    private void ChechBInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChechBInvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChechBInvActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscarActionPerformed
+
+    private void RegistroPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RegistroPActionPerformed
+
+    private void institucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_institucionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_institucionActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminarActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -115,13 +255,31 @@ public class Start extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
+    private javax.swing.JButton Buscar;
+    private javax.swing.JCheckBox ChechBInv;
+    private javax.swing.JCheckBox CheckBOT;
+    private javax.swing.JButton Login;
+    private javax.swing.JButton RegistroP;
+    private javax.swing.JScrollPane Resultados;
+    private javax.swing.JTextField buscar;
+    private javax.swing.JComboBox<String> cluster;
+    private javax.swing.JTextField contraseña;
+    private javax.swing.JButton crearP;
+    private javax.swing.JButton eliminar;
+    private javax.swing.JComboBox<String> institucion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JButton logo;
+    private javax.swing.JButton modificar;
+    private javax.swing.JComboBox<String> oficina;
+    private javax.swing.JTextField usuario;
+
     // End of variables declaration//GEN-END:variables
 }
