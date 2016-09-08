@@ -108,8 +108,11 @@ DROP TABLE IF EXISTS `investigadores`;
 CREATE TABLE `investigadores` (
   `idInvestigadores` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
-  PRIMARY KEY (`idInvestigadores`),
-  UNIQUE KEY `idInvestigadores_UNIQUE` (`idInvestigadores`)
+  `fkIdInstitucion` int(11) NOT NULL,
+  PRIMARY KEY (`idInvestigadores`,`fkIdInstitucion`),
+  UNIQUE KEY `idInvestigadores_UNIQUE` (`idInvestigadores`),
+  KEY `fk_Investigadores_institucion1_idx` (`fkIdInstitucion`),
+  CONSTRAINT `fk_Investigadores_institucion1` FOREIGN KEY (`fkIdInstitucion`) REFERENCES `institucion` (`idInstitucion`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -119,7 +122,7 @@ CREATE TABLE `investigadores` (
 
 LOCK TABLES `investigadores` WRITE;
 /*!40000 ALTER TABLE `investigadores` DISABLE KEYS */;
-INSERT INTO `investigadores` VALUES (1,'Arturo'),(2,'Gary'),(3,'Hugo');
+INSERT INTO `investigadores` VALUES (1,'Arturo',1),(2,'Gary',2),(3,'Hugo',3);
 /*!40000 ALTER TABLE `investigadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -255,4 +258,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-07 14:52:04
+-- Dump completed on 2016-09-08 14:47:04
