@@ -52,7 +52,6 @@ public class Start extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-
         Login = new javax.swing.JButton();
         Buscar = new javax.swing.JButton();
         RegistroP = new javax.swing.JButton();
@@ -78,10 +77,8 @@ public class Start extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
 
         Login.setText("Login");
         Login.addActionListener(new java.awt.event.ActionListener() {
@@ -280,7 +277,6 @@ public class Start extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-
     private javax.swing.JButton Buscar;
     private javax.swing.JCheckBox ChechBInv;
     private javax.swing.JCheckBox CheckBOT;
@@ -305,6 +301,5 @@ public class Start extends javax.swing.JFrame {
     private javax.swing.JButton modificar;
     private javax.swing.JComboBox<String> oficina;
     private javax.swing.JTextField usuario;
-
     // End of variables declaration//GEN-END:variables
 }

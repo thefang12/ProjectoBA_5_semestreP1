@@ -9,13 +9,12 @@ package pbasesav_p1;
  *
  * @author Cousik94
  */
-public class Investigadores extends javax.swing.JDialog {
+public class Investigadores extends javax.swing.JFrame {
 
     /**
-     * Creates new form Investigadores
+     * Creates new form Investigadores0
      */
-    public Investigadores(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Investigadores() {
         initComponents();
     }
 
@@ -42,8 +41,7 @@ public class Investigadores extends javax.swing.JDialog {
         AgregarInv = new javax.swing.JButton();
         EliminarInv = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tablaResult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,8 +76,6 @@ public class Investigadores extends javax.swing.JDialog {
             }
         ));
         jScrollPane3.setViewportView(tablaResult);
-
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 331, 433));
 
         tablaSelec.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,37 +125,110 @@ public class Investigadores extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 350, -1));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Agregar y eliminar investigadores al proyecto");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("Investigador");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
-        getContentPane().add(textInv, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 190, -1));
+
+        textInv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textInvActionPerformed(evt);
+            }
+        });
 
         buscarInv.setText("Buscar");
-        getContentPane().add(buscarInv, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
+        buscarInv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarInvActionPerformed(evt);
+            }
+        });
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Login/logo2.png"))); // NOI18N
-        getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 270, 120));
 
         Aplicar.setText("Aplicar Cambios");
-        getContentPane().add(Aplicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, -1, -1));
 
         AgregarInv.setText("Agregar ->");
-        getContentPane().add(AgregarInv, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, -1, -1));
 
         EliminarInv.setText("<- Eliminar");
-        getContentPane().add(EliminarInv, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 770, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(240, 240, 240)
+                            .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(200, 200, 200)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(11, 11, 11)
+                            .addComponent(textInv, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(10, 10, 10)
+                            .addComponent(buscarInv)
+                            .addGap(259, 259, 259)
+                            .addComponent(Aplicar))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(330, 330, 330)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(AgregarInv)
+                                        .addComponent(EliminarInv))))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 643, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(jLabel1)
+                    .addGap(16, 16, 16)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Aplicar)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(textInv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(buscarInv))))
+                    .addGap(8, 8, 8)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(120, 120, 120)
+                            .addComponent(AgregarInv)
+                            .addGap(8, 8, 8)
+                            .addComponent(EliminarInv))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void textInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textInvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textInvActionPerformed
+
+    private void buscarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarInvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscarInvActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,29 +246,17 @@ public class Investigadores extends javax.swing.JDialog {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Investigadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Investigadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Investigadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Investigadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        
+        //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Investigadores dialog = new Investigadores(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            new Investigadores().setVisible(true);
         });
     }
 
@@ -218,4 +275,5 @@ public class Investigadores extends javax.swing.JDialog {
     private javax.swing.JTable tablaSelec;
     private javax.swing.JTextField textInv;
     // End of variables declaration//GEN-END:variables
+
 }
