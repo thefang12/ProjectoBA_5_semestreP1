@@ -5,6 +5,8 @@
  */
 package pbasesav_p1;
 
+import structures.Proyecto;
+
 /**
  *
  * @author Soporte
@@ -14,8 +16,16 @@ public class MostrarOT extends javax.swing.JFrame {
     /**
      * Creates new form MostrarOT
      */
-    public MostrarOT() {
+    public MostrarOT(Proyecto ProMostrar) {
         initComponents();
+        NombreOT.setText(ProMostrar.getNombre());
+        DescripcionOT.setText(ProMostrar.getDescripcion());
+        EstatusOT.setText(ProMostrar.getEstatus());
+        VentajasOT.setText(ProMostrar.getVentajas());
+        AntecedenetesOT.setText(ProMostrar.getAntecedentes());
+        ColaboradoresOT.setText(ProMostrar.getIdInvestigadores().toString());
+        AplicacionesOT.setText(ProMostrar.getAplicaciones());
+        
     }
 
     /**
@@ -27,37 +37,37 @@ public class MostrarOT extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        EstatusM = new javax.swing.JLabel();
+        VentajasM = new javax.swing.JLabel();
+        ColaboradoresM = new javax.swing.JLabel();
+        AplicacionesM = new javax.swing.JLabel();
         logo = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        AntecedentesM = new javax.swing.JLabel();
+        NombreOT = new javax.swing.JLabel();
+        DescripcionOT = new javax.swing.JLabel();
+        NombreM = new javax.swing.JLabel();
+        DescripcionM = new javax.swing.JLabel();
+        VentajasOT = new javax.swing.JLabel();
+        EstatusOT = new javax.swing.JLabel();
+        ColaboradoresOT = new javax.swing.JLabel();
+        AplicacionesOT = new javax.swing.JLabel();
+        AntecedenetesOT = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(627, 484));
         setPreferredSize(new java.awt.Dimension(627, 484));
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel3.setText("Estatus");
+        EstatusM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        EstatusM.setText("Estatus");
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel4.setText("Ventajas");
+        VentajasM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        VentajasM.setText("Ventajas");
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel8.setText("Colaboradores");
+        ColaboradoresM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        ColaboradoresM.setText("Colaboradores");
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel7.setText("Aplicaciones");
+        AplicacionesM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        AplicacionesM.setText("Aplicaciones");
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Login/logo2.png"))); // NOI18N
         logo.addActionListener(new java.awt.event.ActionListener() {
@@ -66,35 +76,35 @@ public class MostrarOT extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel6.setText("Antecedentes");
+        AntecedentesM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        AntecedentesM.setText("Antecedentes");
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        jLabel5.setText("NombreOT");
+        NombreOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        NombreOT.setText("NombreOT");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        jLabel2.setText("DescripciónOT");
+        DescripcionOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        DescripcionOT.setText("DescripciónOT");
 
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel9.setText("Nombre");
+        NombreM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        NombreM.setText("Nombre");
 
-        jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel10.setText("Descripción");
+        DescripcionM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        DescripcionM.setText("Descripción");
 
-        jLabel11.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        jLabel11.setText("VentajasOT");
+        VentajasOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        VentajasOT.setText("VentajasOT");
 
-        jLabel13.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        jLabel13.setText("EstatusOT");
+        EstatusOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        EstatusOT.setText("EstatusOT");
 
-        jLabel12.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        jLabel12.setText("ColaboradoresOT");
+        ColaboradoresOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        ColaboradoresOT.setText("ColaboradoresOT");
 
-        jLabel14.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        jLabel14.setText("AplicacionesOT");
+        AplicacionesOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        AplicacionesOT.setText("AplicacionesOT");
 
-        jLabel15.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        jLabel15.setText("AntecedentesOT");
+        AntecedenetesOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        AntecedenetesOT.setText("AntecedentesOT");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,31 +116,31 @@ public class MostrarOT extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel3))
+                    .addComponent(NombreM)
+                    .addComponent(DescripcionM)
+                    .addComponent(EstatusM))
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NombreOT, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DescripcionOT, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EstatusOT, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8))
+                    .addComponent(AntecedentesM)
+                    .addComponent(ColaboradoresM))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(AntecedenetesOT, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ColaboradoresOT, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jLabel4)
+                .addComponent(VentajasM)
                 .addGap(34, 34, 34)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(VentajasOT, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jLabel7)
+                .addComponent(AplicacionesM)
                 .addGap(31, 31, 31)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(AplicacionesOT, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,43 +151,43 @@ public class MostrarOT extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(jLabel9)
+                        .addComponent(NombreM)
                         .addGap(47, 47, 47)
-                        .addComponent(jLabel10)
+                        .addComponent(DescripcionM)
                         .addGap(32, 32, 32)
-                        .addComponent(jLabel3))
+                        .addComponent(EstatusM))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(NombreOT)
                         .addGap(7, 7, 7)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DescripcionOT, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(EstatusOT, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(jLabel6)
+                        .addComponent(AntecedentesM)
                         .addGap(61, 61, 61)
-                        .addComponent(jLabel8))
+                        .addComponent(ColaboradoresM))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AntecedenetesOT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ColaboradoresOT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AplicacionesM)
+                    .addComponent(AplicacionesOT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(VentajasM)
+                            .addComponent(VentajasOT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
-        // TODO add your handling code here:
+                // TODO add your handling code here:
     }//GEN-LAST:event_logoActionPerformed
 
     /**
@@ -216,20 +226,20 @@ public class MostrarOT extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel AntecedenetesOT;
+    private javax.swing.JLabel AntecedentesM;
+    private javax.swing.JLabel AplicacionesM;
+    private javax.swing.JLabel AplicacionesOT;
+    private javax.swing.JLabel ColaboradoresM;
+    private javax.swing.JLabel ColaboradoresOT;
+    private javax.swing.JLabel DescripcionM;
+    private javax.swing.JLabel DescripcionOT;
+    private javax.swing.JLabel EstatusM;
+    private javax.swing.JLabel EstatusOT;
+    private javax.swing.JLabel NombreM;
+    private javax.swing.JLabel NombreOT;
+    private javax.swing.JLabel VentajasM;
+    private javax.swing.JLabel VentajasOT;
     private javax.swing.JButton logo;
     // End of variables declaration//GEN-END:variables
 }

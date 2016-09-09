@@ -40,7 +40,7 @@ public class Proyecto {
   
     
 
-    public String toString() {
+    public String getNombre() {
         return nombre;
     }
 
@@ -64,6 +64,10 @@ public class Proyecto {
         return idInvestigadores;
             
     }
-    
 
+    public String getAplicaciones() {
+        return aplicaciones;
+    }
+    
+    
 }
