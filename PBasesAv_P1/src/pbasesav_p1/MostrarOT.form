@@ -26,99 +26,8 @@
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
   </AuxValues>
 
-  <Layout>
-    <DimensionLayout dim="0">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="170" pref="170" max="-2" attributes="0"/>
-              <Component id="logo" min="-2" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="NombreM" min="-2" max="-2" attributes="0"/>
-                  <Component id="DescripcionM" min="-2" max="-2" attributes="0"/>
-                  <Component id="EstatusM" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="NombreOT" min="-2" pref="204" max="-2" attributes="0"/>
-                  <Component id="DescripcionOT" min="-2" pref="200" max="-2" attributes="0"/>
-                  <Component id="EstatusOT" min="-2" pref="204" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="AntecedentesM" min="-2" max="-2" attributes="0"/>
-                  <Component id="ColaboradoresM" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="AntecedenetesOT" min="-2" pref="180" max="-2" attributes="0"/>
-                  <Component id="ColaboradoresOT" min="-2" pref="190" max="-2" attributes="0"/>
-              </Group>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-              <Component id="VentajasM" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="34" pref="34" max="-2" attributes="0"/>
-              <Component id="VentajasOT" min="-2" pref="200" max="-2" attributes="0"/>
-              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-              <Component id="AplicacionesM" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
-              <Component id="AplicacionesOT" min="-2" pref="170" max="-2" attributes="0"/>
-          </Group>
-      </Group>
-    </DimensionLayout>
-    <DimensionLayout dim="1">
-      <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-              <Component id="logo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Component id="NombreM" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="47" pref="47" max="-2" attributes="0"/>
-                      <Component id="DescripcionM" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="32" pref="32" max="-2" attributes="0"/>
-                      <Component id="EstatusM" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="NombreOT" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-                      <Component id="DescripcionOT" min="-2" pref="87" max="-2" attributes="0"/>
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="EstatusOT" min="-2" pref="46" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                      <Component id="AntecedentesM" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="61" pref="61" max="-2" attributes="0"/>
-                      <Component id="ColaboradoresM" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                      <Component id="AntecedenetesOT" min="-2" pref="70" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Component id="ColaboradoresOT" min="-2" pref="70" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="AplicacionesM" min="-2" max="-2" attributes="0"/>
-                  <Component id="AplicacionesOT" min="-2" pref="70" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="VentajasM" min="-2" max="-2" attributes="0"/>
-                          <Component id="VentajasOT" min="-2" pref="60" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-          </Group>
-      </Group>
-    </DimensionLayout>
+  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+    <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JLabel" name="EstatusM">
@@ -128,6 +37,11 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Estatus"/>
       </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="10" y="300" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="VentajasM">
       <Properties>
@@ -136,6 +50,11 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Ventajas"/>
       </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="10" y="370" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="ColaboradoresM">
       <Properties>
@@ -144,6 +63,11 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Colaboradores"/>
       </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="310" y="270" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="AplicacionesM">
       <Properties>
@@ -152,6 +76,11 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Aplicaciones"/>
       </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="310" y="360" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="logo">
       <Properties>
@@ -162,6 +91,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoActionPerformed"/>
       </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="170" y="10" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="AntecedentesM">
       <Properties>
@@ -170,22 +104,11 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Antecedentes"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="NombreOT">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="13" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="NombreOT"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="DescripcionOT">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="13" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Descripci&#xf3;nOT"/>
-      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="310" y="190" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="NombreM">
       <Properties>
@@ -194,6 +117,11 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Nombre"/>
       </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="10" y="183" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="DescripcionM">
       <Properties>
@@ -202,46 +130,112 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Descripci&#xf3;n"/>
       </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="10" y="249" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="VentajasOT">
+    <Component class="javax.swing.JTextField" name="AplicacionesOT">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="13" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="VentajasOT"/>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AplicacionesOTActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="430" y="350" width="190" height="69"/>
+        </Constraint>
+      </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="EstatusOT">
+    <Component class="javax.swing.JTextField" name="NombreOT">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="13" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="EstatusOT"/>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NombreOTActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="100" y="180" width="190" height="30"/>
+        </Constraint>
+      </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="ColaboradoresOT">
+    <Component class="javax.swing.JTextField" name="VentajasOT">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="13" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="ColaboradoresOT"/>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VentajasOTActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="100" y="360" width="190" height="50"/>
+        </Constraint>
+      </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="AplicacionesOT">
+    <Component class="javax.swing.JTextField" name="AntecedenetesOT">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="13" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="AplicacionesOT"/>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AntecedenetesOTActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="430" y="180" width="190" height="60"/>
+        </Constraint>
+      </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="AntecedenetesOT">
+    <Component class="javax.swing.JTextField" name="DescripcionOT">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="13" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="AntecedentesOT"/>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DescripcionOTActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="100" y="220" width="190" height="73"/>
+        </Constraint>
+      </Constraints>
     </Component>
+    <Component class="javax.swing.JTextField" name="EstatusOT">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EstatusOTActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="100" y="300" width="190" height="50"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="430" y="250" width="190" height="90"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="ColaboradoresOT">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="4" rowCount="4">
+                <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                <Column editable="true" title="Title 2" type="java.lang.Object"/>
+                <Column editable="true" title="Title 3" type="java.lang.Object"/>
+                <Column editable="true" title="Title 4" type="java.lang.Object"/>
+              </Table>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

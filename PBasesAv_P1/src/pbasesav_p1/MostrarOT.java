@@ -25,10 +25,10 @@ public class MostrarOT extends javax.swing.JFrame {
     public MostrarOT(Proyecto ProMostrar) {
         initComponents();
         NombreOT.setText(ProMostrar.toString());
-        DescripcionOT.setText(ProMostrar.getDescripcion());
-        EstatusOT.setText(ProMostrar.getEstatus());
+        VentajasOT.setText(ProMostrar.getDescripcion());
+        VentajasOT.setText(ProMostrar.getEstatus());
         VentajasOT.setText(ProMostrar.getVentajas());
-        AntecedenetesOT.setText(ProMostrar.getAntecedentes());
+        AplicacionesOT.setText(ProMostrar.getAntecedentes());
         ColaboradoresOT.setText(ProMostrar.getIdInvestigadores().toString());
         AplicacionesOT.setText(ProMostrar.getAplicaciones());
         
@@ -52,31 +52,37 @@ public class MostrarOT extends javax.swing.JFrame {
         AplicacionesM = new javax.swing.JLabel();
         logo = new javax.swing.JButton();
         AntecedentesM = new javax.swing.JLabel();
-        NombreOT = new javax.swing.JLabel();
-        DescripcionOT = new javax.swing.JLabel();
         NombreM = new javax.swing.JLabel();
         DescripcionM = new javax.swing.JLabel();
-        VentajasOT = new javax.swing.JLabel();
-        EstatusOT = new javax.swing.JLabel();
-        ColaboradoresOT = new javax.swing.JLabel();
-        AplicacionesOT = new javax.swing.JLabel();
-        AntecedenetesOT = new javax.swing.JLabel();
+        AplicacionesOT = new javax.swing.JTextField();
+        NombreOT = new javax.swing.JTextField();
+        VentajasOT = new javax.swing.JTextField();
+        AntecedenetesOT = new javax.swing.JTextField();
+        DescripcionOT = new javax.swing.JTextField();
+        EstatusOT = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ColaboradoresOT = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(627, 484));
         setPreferredSize(new java.awt.Dimension(627, 484));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         EstatusM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         EstatusM.setText("Estatus");
+        getContentPane().add(EstatusM, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
         VentajasM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         VentajasM.setText("Ventajas");
+        getContentPane().add(VentajasM, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, -1, -1));
 
         ColaboradoresM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         ColaboradoresM.setText("Colaboradores");
+        getContentPane().add(ColaboradoresM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, -1, -1));
 
         AplicacionesM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         AplicacionesM.setText("Aplicaciones");
+        getContentPane().add(AplicacionesM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, -1, -1));
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Login/logo2.png"))); // NOI18N
         logo.addActionListener(new java.awt.event.ActionListener() {
@@ -84,113 +90,82 @@ public class MostrarOT extends javax.swing.JFrame {
                 logoActionPerformed(evt);
             }
         });
+        getContentPane().add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
 
         AntecedentesM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         AntecedentesM.setText("Antecedentes");
-
-        NombreOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        NombreOT.setText("NombreOT");
-
-        DescripcionOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        DescripcionOT.setText("DescripciónOT");
+        getContentPane().add(AntecedentesM, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, -1));
 
         NombreM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         NombreM.setText("Nombre");
+        getContentPane().add(NombreM, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 183, -1, -1));
 
         DescripcionM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         DescripcionM.setText("Descripción");
+        getContentPane().add(DescripcionM, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 249, -1, -1));
 
-        VentajasOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        VentajasOT.setText("VentajasOT");
+        AplicacionesOT.setText("jTextField1");
+        AplicacionesOT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AplicacionesOTActionPerformed(evt);
+            }
+        });
+        getContentPane().add(AplicacionesOT, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 350, 190, 69));
 
-        EstatusOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        EstatusOT.setText("EstatusOT");
+        NombreOT.setText("jTextField1");
+        NombreOT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreOTActionPerformed(evt);
+            }
+        });
+        getContentPane().add(NombreOT, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 190, 30));
 
-        ColaboradoresOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        ColaboradoresOT.setText("ColaboradoresOT");
+        VentajasOT.setText("jTextField1");
+        VentajasOT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VentajasOTActionPerformed(evt);
+            }
+        });
+        getContentPane().add(VentajasOT, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, 190, 50));
 
-        AplicacionesOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        AplicacionesOT.setText("AplicacionesOT");
+        AntecedenetesOT.setText("jTextField1");
+        AntecedenetesOT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AntecedenetesOTActionPerformed(evt);
+            }
+        });
+        getContentPane().add(AntecedenetesOT, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 190, 60));
 
-        AntecedenetesOT.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
-        AntecedenetesOT.setText("AntecedentesOT");
+        DescripcionOT.setText("jTextField1");
+        DescripcionOT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DescripcionOTActionPerformed(evt);
+            }
+        });
+        getContentPane().add(DescripcionOT, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 190, 73));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(logo))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NombreM)
-                    .addComponent(DescripcionM)
-                    .addComponent(EstatusM))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NombreOT, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DescripcionOT, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EstatusOT, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AntecedentesM)
-                    .addComponent(ColaboradoresM))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AntecedenetesOT, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ColaboradoresOT, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(VentajasM)
-                .addGap(34, 34, 34)
-                .addComponent(VentajasOT, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(AplicacionesM)
-                .addGap(31, 31, 31)
-                .addComponent(AplicacionesOT, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(logo)
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(NombreM)
-                        .addGap(47, 47, 47)
-                        .addComponent(DescripcionM)
-                        .addGap(32, 32, 32)
-                        .addComponent(EstatusM))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(NombreOT)
-                        .addGap(7, 7, 7)
-                        .addComponent(DescripcionOT, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(EstatusOT, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(AntecedentesM)
-                        .addGap(61, 61, 61)
-                        .addComponent(ColaboradoresM))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(AntecedenetesOT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(ColaboradoresOT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AplicacionesM)
-                    .addComponent(AplicacionesOT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(VentajasM)
-                            .addComponent(VentajasOT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-        );
+        EstatusOT.setText("jTextField1");
+        EstatusOT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EstatusOTActionPerformed(evt);
+            }
+        });
+        getContentPane().add(EstatusOT, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 190, 50));
+
+        ColaboradoresOT.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(ColaboradoresOT);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 190, 90));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -200,26 +175,51 @@ public class MostrarOT extends javax.swing.JFrame {
         cambiarVentana(new Start());                
     }//GEN-LAST:event_logoActionPerformed
 
+    private void AplicacionesOTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AplicacionesOTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AplicacionesOTActionPerformed
+
+    private void NombreOTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreOTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreOTActionPerformed
+
+    private void VentajasOTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentajasOTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VentajasOTActionPerformed
+
+    private void AntecedenetesOTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AntecedenetesOTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AntecedenetesOTActionPerformed
+
+    private void DescripcionOTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescripcionOTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DescripcionOTActionPerformed
+
+    private void EstatusOTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EstatusOTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EstatusOTActionPerformed
+
     /**
      * @param args the command line arguments
      */
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel AntecedenetesOT;
+    private javax.swing.JTextField AntecedenetesOT;
     private javax.swing.JLabel AntecedentesM;
     private javax.swing.JLabel AplicacionesM;
-    private javax.swing.JLabel AplicacionesOT;
+    private javax.swing.JTextField AplicacionesOT;
     private javax.swing.JLabel ColaboradoresM;
-    private javax.swing.JLabel ColaboradoresOT;
+    private javax.swing.JTable ColaboradoresOT;
     private javax.swing.JLabel DescripcionM;
-    private javax.swing.JLabel DescripcionOT;
+    private javax.swing.JTextField DescripcionOT;
     private javax.swing.JLabel EstatusM;
-    private javax.swing.JLabel EstatusOT;
+    private javax.swing.JTextField EstatusOT;
     private javax.swing.JLabel NombreM;
-    private javax.swing.JLabel NombreOT;
+    private javax.swing.JTextField NombreOT;
     private javax.swing.JLabel VentajasM;
-    private javax.swing.JLabel VentajasOT;
+    private javax.swing.JTextField VentajasOT;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logo;
     // End of variables declaration//GEN-END:variables
 }
