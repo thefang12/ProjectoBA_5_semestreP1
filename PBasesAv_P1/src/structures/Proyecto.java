@@ -40,6 +40,7 @@ public class Proyecto {
   
     
 
+    @Override
     public String toString() {
         return nombre;
     }

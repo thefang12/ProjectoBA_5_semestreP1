@@ -27,6 +27,7 @@ public class Oficina {
         return id;
     }
 
+    @Override
     public String toString() {
         return nombre;
     }

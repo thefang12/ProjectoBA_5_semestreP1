@@ -28,7 +28,8 @@ public class Investigador {
         return idInstitucion;
     }
 
-    public String getNombre() {
+ @Override
+    public String toString() {
         return nombre;
     }
  

@@ -31,7 +31,8 @@ public class Cluster {
         return idOficina;
     }
 
-    public String getNombre() {
+    @Override
+    public String toString() {
         return nombre;
     }
 
