@@ -39,7 +39,7 @@ public class Start extends javax.swing.JFrame {
     Cluster[] clusters;
     Proyecto[] proyectos;
     public static int idCuenta = -1;
-    public static Usuarios puesto;
+    public static Usuarios puesto=Usuarios.normal;
 
     public void cambiarVentana(JFrame frame) {
         frame.setVisible(true);
@@ -59,7 +59,6 @@ public class Start extends javax.swing.JFrame {
         }
 
         initComponents();
-        puesto = Usuarios.normal;
         JComponent[] components = {jButton1, RegistroP, eliminar, modificar, jButton2};
         for (JComponent c : components) {
             c.setVisible(false);
@@ -513,6 +512,7 @@ public class Start extends javax.swing.JFrame {
     }//GEN-LAST:event_modificarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        puesto=Usuarios.normal;
         cambiarVentana(new Start());
     }//GEN-LAST:event_jButton2ActionPerformed
     void updateComboBoxes(int c) {
