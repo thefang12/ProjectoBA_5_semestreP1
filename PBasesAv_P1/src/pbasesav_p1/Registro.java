@@ -5,19 +5,64 @@
  */
 package pbasesav_p1;
 
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import com.mysql.jdbc.Statement;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import structures.Investigador;
+import structures.Proyecto;
+
 /**
  *
  * @author Cousik94
  */
 public class Registro extends javax.swing.JFrame {
+        String nombre;
+        String ventaja;
+        String antecedentes;
+        String descripcion;
+        String estatus;
+        String aplicaciones;
+        ArrayList<Investigador> invs;
+        private Proyecto pro;
 
+    public static ArrayList<Investigadores> inves;
     /**
      * Creates new form Registro0
      */
     public Registro() {
         initComponents();
     }
-
+     public Registro(String nombre, String ventajas, String antecedentes, String descripcion, String estatus, String aplicaciones, ArrayList<Investigador> invs) {
+         this.nombre=nombre;
+         this.ventaja=ventajas;
+         this.antecedentes=antecedentes;
+         this.descripcion=descripcion;
+         this.estatus=estatus;
+         this.aplicaciones=aplicaciones;
+         this.invs=invs;
+        initComponents();
+        
+        anteP.setText(antecedentes);
+        descP.setText(estatus);
+        nombreP.setText(nombre);
+        ventajasP.setText(ventajas);
+        descP.setText(descripcion);
+        aplicacionesP.setText(aplicaciones);
+        estatusP.setText(estatus);
+        for(Investigador i : invs)
+        ((CustomTableModel)jTable1.getModel()).addRow(new String[]{i.toString()});
+        
+    }
+     public Registro(Proyecto p) {
+         this.pro=p;
+        initComponents();
+    }
+    
+    public Proyecto formulario;
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,15 +89,27 @@ public class Registro extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Login/logo2.png"))); // NOI18N
 
         agregarInv.setText("Agregar Investigador");
+        agregarInv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarInvActionPerformed(evt);
+            }
+        });
 
         creatP.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         creatP.setText("Crear Proyecto");
+        creatP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creatPActionPerformed(evt);
+            }
+        });
 
         nombreP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,14 +145,37 @@ public class Registro extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setText("Ventajas");
 
+        jTable1.setModel(new CustomTableModel("investigadores"));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 627, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(385, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(creatP)
+                        .addGap(242, 242, 242))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(aplicacionesP, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(agregarInv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(70, 70, 70))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 67, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(177, 177, 177)
@@ -112,17 +192,9 @@ public class Registro extends javax.swing.JFrame {
                                 .addComponent(nombreP, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(descP, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(9, 9, 9)
-                                    .addComponent(jLabel8)))
+                            .addComponent(jLabel6)
                             .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(anteP, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(3, 3, 3)
-                                    .addComponent(agregarInv, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(anteP, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
@@ -130,22 +202,28 @@ public class Registro extends javax.swing.JFrame {
                             .addGap(30, 30, 30)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(estatusP, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ventajasP, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel7)
-                            .addGap(43, 43, 43)
-                            .addComponent(aplicacionesP, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(255, 255, 255)
-                            .addComponent(creatP)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(ventajasP, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGap(0, 68, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 484, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(349, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(agregarInv)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(aplicacionesP, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(creatP)
+                .addGap(20, 20, 20))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 84, Short.MAX_VALUE)
                     .addComponent(logo)
                     .addGap(6, 6, 6)
                     .addComponent(jLabel1)
@@ -162,14 +240,9 @@ public class Registro extends javax.swing.JFrame {
                             .addComponent(descP, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(24, 24, 24)
-                            .addComponent(jLabel6)
-                            .addGap(52, 52, 52)
-                            .addComponent(jLabel8))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(anteP, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(17, 17, 17)
-                            .addComponent(agregarInv)))
-                    .addGap(15, 15, 15)
+                            .addComponent(jLabel6))
+                        .addComponent(anteP, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(2, 2, 2)
@@ -179,14 +252,8 @@ public class Registro extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(estatusP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(ventajasP, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(4, 4, 4)
-                            .addComponent(jLabel7))
-                        .addComponent(aplicacionesP, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addComponent(creatP)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(ventajasP, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 136, Short.MAX_VALUE)))
         );
 
         pack();
@@ -200,6 +267,36 @@ public class Registro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ventajasPActionPerformed
 
+    private void creatPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creatPActionPerformed
+        // TODO add your handling code here:
+        
+        
+        String SQL = "INSERT INTO `ofertas_tecnologicas` Values('"+nombre+"','"+descripcion+"','"+estatus+"','"+ventaja+"','"+antecedentes+"','"+aplicaciones+"')";
+        
+         Statement st;
+         ResultSet rst;
+        
+            try{
+                Connection con = Conexion.getConexion();
+                st = (Statement) con.createStatement();
+                rst = st.executeQuery(SQL);
+                
+                con.close();
+            }catch (Exception e) {
+                e.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_creatPActionPerformed
+
+    private void agregarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarInvActionPerformed
+        // TODO add your handling code here:
+        cambiarVentana(new Investigadores(nombre, ventaja, antecedentes, descripcion, estatus, aplicaciones));
+    }//GEN-LAST:event_agregarInvActionPerformed
+       public void cambiarVentana(JFrame frame) {
+        frame.setVisible(true);
+        this.dispose();
+    }
+       
     /**
      * @param args the command line arguments
      */
@@ -245,6 +342,8 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton logo;
     private javax.swing.JTextField nombreP;
     private javax.swing.JTextField ventajasP;

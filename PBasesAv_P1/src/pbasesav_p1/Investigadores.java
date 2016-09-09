@@ -5,16 +5,47 @@
  */
 package pbasesav_p1;
 
+import com.sun.org.apache.xerces.internal.xs.StringList;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import structures.Investigador;
+
 /**
  *
  * @author Cousik94
  */
 public class Investigadores extends javax.swing.JFrame {
 
+    public TableModel modelClickR;
+
+    Investigador[] invs;
+    ArrayList<Investigador> invsSelec;
+    private final String nombre;
+    private final String ventajas;
+    private final String antecedentes;
+    private final String descripcion;
+    private final String estatus;
+    private final String aplicaciones;
+
     /**
      * Creates new form Investigadores0
      */
-    public Investigadores() {
+    public Investigadores( String nombre, String ventajas, String antecedentes, String descripcion, String estatus, String aplicaciones) {
+        ArrayList<Investigadores> invest;
+        this.nombre = nombre;
+        this.ventajas = ventajas;
+        this.antecedentes = antecedentes;
+        this.descripcion = descripcion;
+        this.estatus = estatus;
+        this.aplicaciones = aplicaciones;
         initComponents();
     }
 
@@ -75,6 +106,11 @@ public class Investigadores extends javax.swing.JFrame {
                 "Resultados"
             }
         ));
+        tablaResult.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaResultMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tablaResult);
 
         tablaSelec.setModel(new javax.swing.table.DefaultTableModel(
@@ -125,7 +161,7 @@ public class Investigadores extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -150,16 +186,34 @@ public class Investigadores extends javax.swing.JFrame {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Login/logo2.png"))); // NOI18N
 
         Aplicar.setText("Aplicar Cambios");
+        Aplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AplicarActionPerformed(evt);
+            }
+        });
 
         AgregarInv.setText("Agregar ->");
+        AgregarInv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarInvActionPerformed(evt);
+            }
+        });
 
         EliminarInv.setText("<- Eliminar");
+        EliminarInv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarInvActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 770, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(315, 315, 315)
+                .addComponent(buscarInv)
+                .addContainerGap(384, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -174,9 +228,7 @@ public class Investigadores extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addGap(11, 11, 11)
                             .addComponent(textInv, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(10, 10, 10)
-                            .addComponent(buscarInv)
-                            .addGap(259, 259, 259)
+                            .addGap(340, 340, 340)
                             .addComponent(Aplicar))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +243,10 @@ public class Investigadores extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 643, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(buscarInv)
+                .addContainerGap(449, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -205,9 +260,8 @@ public class Investigadores extends javax.swing.JFrame {
                             .addGap(10, 10, 10)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
-                                .addComponent(textInv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(buscarInv))))
-                    .addGap(8, 8, 8)
+                                .addComponent(textInv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGap(16, 16, 16)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(120, 120, 120)
@@ -228,37 +282,93 @@ public class Investigadores extends javax.swing.JFrame {
 
     private void buscarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarInvActionPerformed
         // TODO add your handling code here:
+        findInvestigador();
     }//GEN-LAST:event_buscarInvActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Investigadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        
-        //</editor-fold>
+    private void AgregarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarInvActionPerformed
+        // TODO add your handling code here:
+        int row = tablaResult.getSelectedRow();
+        if (row != -1) {
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Investigadores().setVisible(true);
-        });
+            invsSelec.add(invs[row]);
+            ((CustomTableModel) tablaSelec.getModel()).addRow(new String[]{invsSelec.toString()});
+
+        }
+
+
+    }//GEN-LAST:event_AgregarInvActionPerformed
+
+    private void EliminarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarInvActionPerformed
+        // TODO add your handling code here:
+        int row = tablaSelec.getSelectedRow();
+        if (row != -1) {
+
+            invsSelec.remove(row);
+            ((CustomTableModel) tablaSelec.getModel()).removeRow(row);
+        }
+    }//GEN-LAST:event_EliminarInvActionPerformed
+
+    private void tablaResultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaResultMouseClicked
+        // TODO add your handling code here:
+        int index = tablaResult.getSelectedRow();
+        modelClickR = tablaResult.getModel();
+
+    }//GEN-LAST:event_tablaResultMouseClicked
+
+    private void AplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AplicarActionPerformed
+        // TODO add your handling code here:
+        cambiarVentana(new Registro(nombre, ventajas, antecedentes, descripcion, estatus, aplicaciones, invsSelec));
+    }//GEN-LAST:event_AplicarActionPerformed
+       public void cambiarVentana(JFrame frame) {
+        frame.setVisible(true);
+        this.dispose();
     }
+
+//FUNCION DEVUELVE TABLA INVESTIGADORES
+    public ArrayList<Investigador> listInvestigador(String valToSearch) {
+        ArrayList<Investigador> listInvestigador = new ArrayList<>();
+
+        Statement st;
+        ResultSet rs;
+
+        try {
+            Connection con = Conexion.getConexion();
+            st = con.createStatement();
+            rs = st.executeQuery("SELECT * FROM `investigadores` WHERE CONCAT(`idInvestigadores`,`fkIdInstitucion`,`nombre`) LIKE '%" + valToSearch + "%'");
+
+            Investigador investigador;
+            while (rs.next()) {
+                investigador = new Investigador(
+                        rs.getInt("idInvestigadores"),
+                        rs.getInt("fkIdInstitucion"),
+                        rs.getString("nombre")
+                );
+                listInvestigador.add(investigador);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listInvestigador;
+    }
+
+//FUNCION SE LE PONE AL BOTON Y RECORRER ARRAY Y DEVUELVE RESULTADO     
+    public void findInvestigador() {
+        CustomTableModel model = null;
+        try {
+            Connection con = Conexion.getConexion();
+            model = Conexion.createTableModel(con, "select nombre from investigador where nombre like ? ", new Object[]{"%" + textInv.getText() + "%"}, "investigadores no encontrados");
+            invs = Conexion.rstoInvestigadores(con, "select * from investigador where nombre like ? ", new Object[]{"%" + textInv.getText() + "%"});
+        } catch (SQLException ex) {
+            Logger.getLogger(Investigadores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        tablaResult.setModel(model);
+
+    }
+//FUNCION EXCEC QUERY
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarInv;
