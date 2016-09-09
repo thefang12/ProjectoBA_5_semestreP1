@@ -22,6 +22,7 @@ public class Institucion {
         return id;
     }
 
+    @Override
     public String toString() {
         return nombre;
     }

@@ -7,6 +7,7 @@ package pbasesav_p1;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -25,7 +26,7 @@ public class Start extends javax.swing.JFrame {
      * Creates new form Start
      */
    
-        Institucion[] instutuciones;
+        Institucion[] instituciones;
     Oficina[] oficinas;
     Cluster[] clusters;
     Proyecto[] proyectos;
@@ -34,10 +35,13 @@ public class Start extends javax.swing.JFrame {
         this.dispose();
     }
     public Start() {
-       try {
+try {
             Connection con = Conexion.getConexion();
             
-        instutuciones=Conexion.rstoInstituciones(con, "select * from institucion ", null);
+        instituciones=Conexion.rstoInstituciones(con, "select * from institucion ", null);
+        oficinas=Conexion.rstoOficinas(con, "select * from oficina where idOficina=?", new Object[]{instituciones[0].getId()});
+        clusters= Conexion.rstoClusters(con, "select * from cluster where fkOficina=?", new Object[]{oficinas[0].getId()});
+        con.close();
         } catch (SQLException ex) {
             Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -63,13 +67,12 @@ public class Start extends javax.swing.JFrame {
         usuario = new javax.swing.JTextField();
         contraseña = new javax.swing.JTextField();
         buscar = new javax.swing.JTextField();
-        institucion = new javax.swing.JComboBox<>();
-        oficina = new javax.swing.JComboBox<>();
-        cluster = new javax.swing.JComboBox<>();
+        institucion = new javax.swing.JComboBox<String>();
+        oficina = new javax.swing.JComboBox<String>();
+        cluster = new javax.swing.JComboBox<String>();
         ChechBInv = new javax.swing.JCheckBox();
         CheckBOT = new javax.swing.JCheckBox();
         Resultados = new javax.swing.JScrollPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -90,6 +93,11 @@ public class Start extends javax.swing.JFrame {
         getContentPane().add(Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 25, -1, -1));
 
         Buscar.setText("Buscar");
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarActionPerformed(evt);
+            }
+        });
         getContentPane().add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 359, -1, -1));
 
         RegistroP.setForeground(new java.awt.Color(60, 63, 65));
@@ -139,7 +147,7 @@ public class Start extends javax.swing.JFrame {
         });
         getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 301, 255, -1));
 
-        institucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        institucion.setModel(new javax.swing.DefaultComboBoxModel(instituciones!=null?instituciones:new Institucion[]{}));
         institucion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 institucionActionPerformed(evt);
@@ -147,10 +155,15 @@ public class Start extends javax.swing.JFrame {
         });
         getContentPane().add(institucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 170, 190, -1));
 
-        oficina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        oficina.setModel(new javax.swing.DefaultComboBoxModel(oficinas!=null?oficinas:new Oficina[]{}));
+        oficina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oficinaActionPerformed(evt);
+            }
+        });
         getContentPane().add(oficina, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 214, 190, -1));
 
-        cluster.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cluster.setModel(new javax.swing.DefaultComboBoxModel(clusters!=null ? clusters : new Cluster[]{} ));
         getContentPane().add(cluster, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 255, 190, -1));
 
         ChechBInv.setText("Investigadores");
@@ -181,9 +194,7 @@ public class Start extends javax.swing.JFrame {
                 "Proyecto"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-
-        Resultados.setViewportView(jScrollPane1);
+        Resultados.setViewportView(jTable1);
 
         getContentPane().add(Resultados, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 409, 525, 230));
 
@@ -234,13 +245,59 @@ public class Start extends javax.swing.JFrame {
     }//GEN-LAST:event_RegistroPActionPerformed
 
     private void institucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_institucionActionPerformed
-        // TODO add your handling code here:
+       try {
+            Connection con = Conexion.getConexion();
+        oficinas=Conexion.rstoOficinas(con, "select * from oficina where idOficina=?", new Object[]{((Institucion)institucion.getSelectedItem()).getId()});
+        clusters= Conexion.rstoClusters(con, "select * from cluster where fkOficina=?", new Object[]{oficinas[0].getId()});
+        updateComboBoxes();
+        con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
     }//GEN-LAST:event_institucionActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarActionPerformed
 
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        
+    }//GEN-LAST:event_BuscarActionPerformed
+
+    private void oficinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oficinaActionPerformed
+ try {
+            Connection con = Conexion.getConexion();
+        clusters= Conexion.rstoClusters(con, "select * from cluster where fkOficina=?", new Object[]{((Oficina)oficina.getSelectedItem()).getId()});
+        updateComboBoxes();
+        con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
+        }    }//GEN-LAST:event_oficinaActionPerformed
+ void updateComboBoxes(){
+     if(instituciones!=null)
+     institucion.setModel(new javax.swing.DefaultComboBoxModel(instituciones));
+     else{
+      institucion.setModel(new javax.swing.DefaultComboBoxModel(new Institucion[]{}));
+      institucion.setEnabled(false);
+      oficina.setEnabled(false);
+      cluster.setEnabled(false);
+     }
+     if(oficinas!=null)
+     oficina.setModel(new javax.swing.DefaultComboBoxModel(oficinas));
+     else{
+      oficina.setModel(new javax.swing.DefaultComboBoxModel(new Oficina[]{}));
+      oficina.setEnabled(false);
+      cluster.setEnabled(false);
+     } 
+     if(clusters!=null)
+     cluster.setModel(new javax.swing.DefaultComboBoxModel(clusters));
+     else{
+      cluster.setModel(new javax.swing.DefaultComboBoxModel(new Cluster[]{}));
+      cluster.setEnabled(false);
+     }
+     
+ }
 
     /**
      * @param args the command line arguments
@@ -296,7 +353,6 @@ public class Start extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton logo;
     private javax.swing.JButton modificar;
