@@ -5,12 +5,18 @@
  */
 package pbasesav_p1;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Soporte
  */
 public class OpcionesAdmin extends javax.swing.JFrame {
 
+    public void cambiarVentana(JFrame frame) {
+        frame.setVisible(true);
+        this.dispose();
+    }
     /**
      * Creates new form OpcionesAdmin
      */
@@ -28,14 +34,13 @@ public class OpcionesAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         logo = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        Agregar = new javax.swing.JButton();
+        Actualizar = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        CerrarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(627, 484));
-        setPreferredSize(new java.awt.Dimension(627, 484));
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Login/logo2.png"))); // NOI18N
         logo.addActionListener(new java.awt.event.ActionListener() {
@@ -44,35 +49,35 @@ public class OpcionesAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Agregar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Agregar.setText("Agregar");
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AgregarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton2.setText("Actualizar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Actualizar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Actualizar.setText("Actualizar");
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ActualizarActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton3.setText("Eliminar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Eliminar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                EliminarActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton4.setText("CERRAR SESIÓN");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        CerrarSesion.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        CerrarSesion.setText("CERRAR SESIÓN");
+        CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                CerrarSesionActionPerformed(evt);
             }
         });
 
@@ -82,9 +87,9 @@ public class OpcionesAdmin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addComponent(jButton1)
+                .addComponent(Agregar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(Eliminar)
                 .addGap(53, 53, 53))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(190, Short.MAX_VALUE)
@@ -93,10 +98,10 @@ public class OpcionesAdmin extends javax.swing.JFrame {
                         .addComponent(logo)
                         .addGap(154, 154, 154))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(Actualizar)
                         .addGap(225, 225, 225))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton4)
+                        .addComponent(CerrarSesion)
                         .addGap(214, 214, 214))))
         );
         layout.setVerticalGroup(
@@ -110,12 +115,12 @@ public class OpcionesAdmin extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton1))
+                            .addComponent(Eliminar)
+                            .addComponent(Agregar))
                         .addGap(20, 20, 20)))
-                .addComponent(jButton2)
+                .addComponent(Actualizar)
                 .addGap(70, 70, 70)
-                .addComponent(jButton4)
+                .addComponent(CerrarSesion)
                 .addGap(41, 41, 41))
         );
 
@@ -126,21 +131,24 @@ public class OpcionesAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_logoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        cambiarVentana(new Registro());
+    }//GEN-LAST:event_AgregarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ActualizarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        cambiarVentana(new Start());
+    }//GEN-LAST:event_EliminarActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        cambiarVentana(new Start());
+    }//GEN-LAST:event_CerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,10 +186,10 @@ public class OpcionesAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton Actualizar;
+    private javax.swing.JButton Agregar;
+    private javax.swing.JButton CerrarSesion;
+    private javax.swing.JButton Eliminar;
     private javax.swing.JButton logo;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,9 @@
  */
 package pbasesav_p1;
 
+import javax.swing.JFrame;
 import structures.Proyecto;
+import pbasesav_p1.Start;
 
 /**
  *
@@ -13,6 +15,10 @@ import structures.Proyecto;
  */
 public class MostrarOT extends javax.swing.JFrame {
 
+    public void cambiarVentana(JFrame frame) {
+        frame.setVisible(true);
+        this.dispose();
+    }
     /**
      * Creates new form MostrarOT
      */
@@ -190,7 +196,8 @@ public class MostrarOT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
-                // TODO add your handling code here:
+        // TODO add your handling code here:
+        cambiarVentana(new Start());                
     }//GEN-LAST:event_logoActionPerformed
 
     /**
