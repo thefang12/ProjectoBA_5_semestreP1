@@ -24,6 +24,7 @@ public class Start extends javax.swing.JFrame {
     /**
      * Creates new form Start
      */
+   
         Institucion[] instutuciones;
     Oficina[] oficinas;
     Cluster[] clusters;
