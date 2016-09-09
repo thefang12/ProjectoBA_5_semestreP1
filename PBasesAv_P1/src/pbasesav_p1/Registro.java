@@ -37,8 +37,7 @@ public class Registro extends javax.swing.JFrame {
     String estatus;
     String aplicaciones;
     ArrayList<Investigador> invs;
-      Proyecto p;
-    public static ArrayList<Investigadores> inves;
+    Proyecto p;
 
     /**
      * Creates new form Registro
@@ -78,12 +77,14 @@ public class Registro extends javax.swing.JFrame {
         descP.setText(p.getDescripcion());
         aplicacionesP.setText(p.getAplicaciones());
         estatusP.setText(p.getEstatus());
-        this.p=p;
+        this.p = p;
         Connection con;
         try {
             con = Conexion.getConexion();
-            for (int i : p.getIdInvestigadores()) {
-                ((CustomTableModel) jTable1.getModel()).addRow(new Object[]{Conexion.consultValues(con, "select nombre investigadores where idInvestigadores=?", new Object[]{i})});
+           for (int i : p.getIdInvestigadores()) {
+                ResultSet rs =Conexion.consultValues(con, "select nombre from Investigadores where idInvestigadores = ?", new Object[]{i});
+                rs.next();
+                ((CustomTableModel) jTable1.getModel()).addRow(new Object[]{rs.getString(1)});
             }
             con.close();
         } catch (SQLException ex) {
@@ -97,7 +98,7 @@ public class Registro extends javax.swing.JFrame {
 
     Registro(int idInstitucion) {
         idInst = idInstitucion;
- try {
+        try {
             Connection con = Conexion.getConexion();
             oficinas = Conexion.rstoOficinas(con, "select * from oficina where idOficina=?", new Object[]{idInst});
             clusters = Conexion.rstoClusters(con, "select * from cluster where fkOficina=?", new Object[]{oficinas[0].getId()});
@@ -381,9 +382,11 @@ public class Registro extends javax.swing.JFrame {
         try {
             Connection con = Conexion.getConexion();
 
-            Conexion.consultValues(con, SQL, new Object[]{Conexion.getAutonumericField(con, SQL, 1),((Cluster)cluster.getSelectedItem()).getId(), nombre, descripcion, estatus, ventaja, antecedentes, aplicaciones});
-           for(Investigador i : invs)
-            Conexion.consultValues(con, sql2, new Object[]{Conexion.consultValues(con, "select idOT from ofertas_Tecnologicas where nombre= ?", new Object[]{nombre}).getInt(1),i.getId()});
+            Conexion.executeUpdate(con, SQL, new Object[]{Conexion.getAutonumericField(con, SQL, 1), ((Cluster) cluster.getSelectedItem()).getId(), nombreP.getText(), descP.getText(), estatusP.getText(), ventajasP.getText(), anteP.getText(), aplicacionesP.getText()});
+            if(invs!=null)
+            for (Investigador i : invs) {
+                Conexion.executeUpdate(con, sql2, new Object[]{Conexion.consultValues(con, "select idOT from ofertas_Tecnologicas where nombre= ?", new Object[]{nombre}).getInt(1), i.getId()});
+            }
             con.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -414,9 +417,10 @@ public class Registro extends javax.swing.JFrame {
         try {
             Connection con = Conexion.getConexion();
 
-            Conexion.consultValues(con, SQL, new Object[]{Conexion.getAutonumericField(con, SQL, 1),((Cluster)cluster.getSelectedItem()).getId(), nombre, descripcion, estatus, ventaja, antecedentes, aplicaciones});
-           for(Investigador i : invs)
-            Conexion.consultValues(con, sql2, new Object[]{Conexion.consultValues(con, "select idOT from ofertas_Tecnologicas where nombre= ?", new Object[]{nombre}).getInt(1),i.getId()});
+            Conexion.consultValues(con, SQL, new Object[]{Conexion.getAutonumericField(con, SQL, 1), ((Cluster) cluster.getSelectedItem()).getId(), nombre, descripcion, estatus, ventaja, antecedentes, aplicaciones});
+            for (Investigador i : invs) {
+                Conexion.consultValues(con, sql2, new Object[]{Conexion.consultValues(con, "select idOT from ofertas_Tecnologicas where nombre= ?", new Object[]{nombre}).getInt(1), i.getId()});
+            }
             con.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -431,8 +435,6 @@ public class Registro extends javax.swing.JFrame {
         switch (c) {
             case 2:
                 if (oficinas != null) {
-                    DefaultComboBoxModel df = new DefaultComboBoxModel(oficinas)!=null ? new DefaultComboBoxModel(oficinas): new DefaultComboBoxModel();
-                    System.out.println(df.toString());
                     oficina.setModel(new DefaultComboBoxModel(oficinas));
                 } else {
                     oficina.setModel(new javax.swing.DefaultComboBoxModel(new Oficina[]{}));
@@ -442,13 +444,13 @@ public class Registro extends javax.swing.JFrame {
 
             case 3:
                 if (clusters != null) {
-                    cluster.setModel(new javax.swing.DefaultComboBoxModel(clusters));
+               cluster.setModel(new javax.swing.DefaultComboBoxModel(clusters));
                 } else {
                     cluster.setModel(new javax.swing.DefaultComboBoxModel(new Cluster[]{}));
                     cluster.setEnabled(false);
                 }
         }
-        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarInv;
     private javax.swing.JTextField anteP;

@@ -27,13 +27,13 @@ public class Investigadores extends javax.swing.JFrame {
     public TableModel modelClickR;
 
     Investigador[] invs;
-    ArrayList<Investigador> invsSelec;
-    private final String nombre;
-    private final String ventajas;
-    private final String antecedentes;
-    private final String descripcion;
-    private final String estatus;
-    private final String aplicaciones;
+    ArrayList<Investigador> invsSelec = new ArrayList<Investigador>();
+    private  String nombre;
+    private String ventajas;
+    private  String antecedentes;
+    private  String descripcion;
+    private  String estatus;
+    private  String aplicaciones;
 
     /**
      * Creates new form Investigadores0
@@ -232,9 +232,9 @@ public class Investigadores extends javax.swing.JFrame {
         // TODO add your handling code here:
         int row = tablaResult.getSelectedRow();
         if (row != -1) {
-
+            System.out.println(row);
             invsSelec.add(invs[row]);
-            ((CustomTableModel) tablaSelec.getModel()).addRow(new String[]{invsSelec.toString()});
+            ((CustomTableModel) tablaSelec.getModel()).addRow(new Object[]{invs[row].toString()});
 
         }
 
@@ -272,42 +272,14 @@ public class Investigadores extends javax.swing.JFrame {
         this.dispose();
     }
 
-//FUNCION DEVUELVE TABLA INVESTIGADORES
-    public ArrayList<Investigador> listInvestigador(String valToSearch) {
-        ArrayList<Investigador> listInvestigador = new ArrayList<>();
-
-        Statement st;
-        ResultSet rs;
-
-        try {
-            Connection con = Conexion.getConexion();
-            st = con.createStatement();
-            rs = st.executeQuery("SELECT * FROM `investigadores` WHERE CONCAT(`idInvestigadores`,`fkIdInstitucion`,`nombre`) LIKE '%" + valToSearch + "%'");
-
-            Investigador investigador;
-            while (rs.next()) {
-                investigador = new Investigador(
-                        rs.getInt("idInvestigadores"),
-                        rs.getInt("fkIdInstitucion"),
-                        rs.getString("nombre")
-                );
-                listInvestigador.add(investigador);
-            }
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return listInvestigador;
-    }
 
 //FUNCION SE LE PONE AL BOTON Y RECORRER ARRAY Y DEVUELVE RESULTADO     
     public void findInvestigador() {
         CustomTableModel model = null;
         try {
             Connection con = Conexion.getConexion();
-            model = Conexion.createTableModel(con, "select nombre from investigador where nombre like ? ", new Object[]{"%" + textInv.getText() + "%"}, "investigadores no encontrados");
-            invs = Conexion.rstoInvestigadores(con, "select * from investigador where nombre like ? ", new Object[]{"%" + textInv.getText() + "%"});
+            model = Conexion.createTableModel(con, "select nombre from Investigadores where nombre like ? ", new Object[]{"%" + textInv.getText() + "%"}, "investigadores no encontrados");
+            invs = Conexion.rstoInvestigadores(con, "select * from Investigadores where nombre like ? ", new Object[]{"%" + textInv.getText() + "%"});
         } catch (SQLException ex) {
             Logger.getLogger(Investigadores.class.getName()).log(Level.SEVERE, null, ex);
         }

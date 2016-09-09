@@ -5,6 +5,12 @@
  */
 package pbasesav_p1;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import structures.Proyecto;
 import pbasesav_p1.Start;
@@ -29,8 +35,19 @@ public class MostrarOT extends javax.swing.JFrame {
         VentajasOT.setText(ProMostrar.getEstatus());
         VentajasOT.setText(ProMostrar.getVentajas());
         AplicacionesOT.setText(ProMostrar.getAntecedentes());
-        ColaboradoresOT.setText(ProMostrar.getIdInvestigadores().toString());
         AplicacionesOT.setText(ProMostrar.getAplicaciones());
+        Connection con;
+        try {
+            con = Conexion.getConexion();
+            for (int i : ProMostrar.getIdInvestigadores()) {
+                ResultSet rs =Conexion.consultValues(con, "select nombre from Investigadores where idInvestigadores = ?", new Object[]{i});
+                rs.next();
+                ((CustomTableModel) ColaboradoresOT.getModel()).addRow(new Object[]{rs.getString(1)});
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     public MostrarOT() {
@@ -65,7 +82,6 @@ public class MostrarOT extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(627, 484));
-        setPreferredSize(new java.awt.Dimension(627, 484));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         EstatusM.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -152,17 +168,7 @@ public class MostrarOT extends javax.swing.JFrame {
         });
         getContentPane().add(EstatusOT, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 190, 50));
 
-        ColaboradoresOT.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        ColaboradoresOT.setModel(new CustomTableModel("Investigadores"));
         jScrollPane1.setViewportView(ColaboradoresOT);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 190, 90));

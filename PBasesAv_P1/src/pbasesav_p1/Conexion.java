@@ -298,7 +298,7 @@ public class Conexion {
             Investigador[] ps = new Investigador[noRows];
             for (int i = 0; rs.next(); i++) {
                 //creamos un objeto para almacenar un registro
-                ps[i] = new Investigador(rs.getInt(1), rs.getInt(2),rs.getString(3));
+                ps[i] = new Investigador(rs.getInt(1), rs.getInt(3),rs.getString(2));
                 //rellenar cada posicion del objeto con una de las columans de la tabla 
             }
             return ps;
