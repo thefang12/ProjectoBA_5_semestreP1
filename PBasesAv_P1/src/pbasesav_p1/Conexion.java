@@ -230,7 +230,10 @@ public class Conexion {
             Proyecto[] ps = new Proyecto[noRows];
             for (int i = 0; rs.next(); i++) {
                 //creamos un objeto para almacenar un registro
-                ps[i] = new Proyecto(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), Conexion.rstoInvestigadores_Proyecto(con, "select fkIdInvestigadores ofertas_Tecnologicas_has_Investigadores where fkIdOt=? ", new Object[]{rs.getInt(1)}));
+                ps[i] = new Proyecto(rs.getInt(1), rs.getInt(2), rs.getString(3)
+                        , rs.getString(4), rs.getString(5), rs.getString(6), 
+                        rs.getString(7), rs.getString(8), 
+                        Conexion.rstoInvestigadores_Proyecto(con, "select fkIdInvestigadores from ofertas_Tecnologicas_has_Investigadores where fkIdOt = ? ", new Object[]{rs.getInt(1)}));
                 //rellenar cada posicion del objeto con una de las columans de la tabla 
             }
             return ps;

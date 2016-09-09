@@ -49,6 +49,14 @@ public class Proyecto {
         return descripcion;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public int getIdCluster() {
+        return idCluster;
+    }
+
     public String getEstatus() {
         return estatus;
     }
