@@ -12,6 +12,11 @@ import javax.swing.JFrame;
  * @author Soporte
  */
 public class OpcionesAdmin extends javax.swing.JFrame {
+    JFrame next;
+
+    OpcionesAdmin(Start aThis) {
+        next=aThis;
+    }
 
     public void cambiarVentana(JFrame frame) {
         frame.setVisible(true);
@@ -133,16 +138,17 @@ public class OpcionesAdmin extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
-        cambiarVentana(new Registro());
+        cambiarVentana(next);
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
         // TODO add your handling code here:
+         cambiarVentana(next);
     }//GEN-LAST:event_ActualizarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
-        cambiarVentana(new Start());
+         cambiarVentana(next);
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarSesionActionPerformed

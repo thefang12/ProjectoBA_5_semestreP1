@@ -38,8 +38,9 @@ public class Start extends javax.swing.JFrame {
     Oficina[] oficinas;
     Cluster[] clusters;
     Proyecto[] proyectos;
-    public static int idCuenta = -1;
-    public static Usuarios puesto=Usuarios.normal;
+    public static int idInstitucion;
+    public static Usuarios puesto;
+    
 
     public void cambiarVentana(JFrame frame) {
         frame.setVisible(true);
@@ -257,7 +258,7 @@ public class Start extends javax.swing.JFrame {
             while (rs.next()) {
 
                 if (n.equals(rs.getString(5)) && checkPassword(jPasswordField1.getPassword(), rs.getString(6))) {
-                    idCuenta = rs.getInt(1);
+                    idInstitucion = rs.getInt(2);
                     if (rs.getString(3).equals("administrador")) {
                         puesto = Usuarios.admin;
                         JComponent[] components = {RegistroP, eliminar, modificar, jButton2};
@@ -324,7 +325,7 @@ public class Start extends javax.swing.JFrame {
         Connection con;
         try {
             con = Conexion.getConexion();
-             for (int i = 0; i < jTable1.getSelectedRowCount(); i++) {
+             if (jTable1.getSelectedRow()!=-1) {
             Conexion.executeUpdate(con, "Delete from ofertas_Tecnologicas_has_Investigadores where fkIdOT=? ", new Object[]{proyectos[jTable1.getSelectedRow()].getId()});
             Conexion.executeUpdate(con, "Delete from ofertas_Tecnologicas where idOT=? ", new Object[]{proyectos[jTable1.getSelectedRow()].getId()});
         }
@@ -483,7 +484,7 @@ public class Start extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void RegistroPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroPActionPerformed
-        cambiarVentana(new Registro());
+        cambiarVentana(new Registro(idInstitucion));
     }//GEN-LAST:event_RegistroPActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -501,14 +502,17 @@ public class Start extends javax.swing.JFrame {
 
     private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
         if (puesto == Usuarios.admin) {
-            cambiarVentana(new OpcionesAdmin());
+            cambiarVentana(new OpcionesAdmin( this));
         }
     }//GEN-LAST:event_logoActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
 
         //TODO
-        cambiarVentana(new Registro());
+        if (jTable1.getSelectedRow()!=-1){
+            
+        cambiarVentana(new Registro(proyectos[jTable1.getSelectedRow()]));
+        }
     }//GEN-LAST:event_modificarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

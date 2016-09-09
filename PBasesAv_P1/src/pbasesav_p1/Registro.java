@@ -5,13 +5,20 @@
  */
 package pbasesav_p1;
 
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import com.mysql.jdbc.Statement;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import structures.Cluster;
+import structures.Institucion;
 import structures.Investigador;
+import structures.Oficina;
 import structures.Proyecto;
 
 /**
@@ -19,32 +26,37 @@ import structures.Proyecto;
  * @author Cousik94
  */
 public class Registro extends javax.swing.JFrame {
-        String nombre;
-        String ventaja;
-        String antecedentes;
-        String descripcion;
-        String estatus;
-        String aplicaciones;
-        ArrayList<Investigador> invs;
-        private Proyecto pro;
 
+    int idInst;
+    Oficina[] oficinas;
+    Cluster[] clusters;
+    String nombre;
+    String ventaja;
+    String antecedentes;
+    String descripcion;
+    String estatus;
+    String aplicaciones;
+    ArrayList<Investigador> invs;
+      Proyecto p;
     public static ArrayList<Investigadores> inves;
+
     /**
-     * Creates new form Registro0
+     * Creates new form Registro
      */
     public Registro() {
         initComponents();
     }
-     public Registro(String nombre, String ventajas, String antecedentes, String descripcion, String estatus, String aplicaciones, ArrayList<Investigador> invs) {
-         this.nombre=nombre;
-         this.ventaja=ventajas;
-         this.antecedentes=antecedentes;
-         this.descripcion=descripcion;
-         this.estatus=estatus;
-         this.aplicaciones=aplicaciones;
-         this.invs=invs;
+
+    public Registro(String nombre, String ventajas, String antecedentes, String descripcion, String estatus, String aplicaciones, ArrayList<Investigador> invs) {
+        this.nombre = nombre;
+        this.ventaja = ventajas;
+        this.antecedentes = antecedentes;
+        this.descripcion = descripcion;
+        this.estatus = estatus;
+        this.aplicaciones = aplicaciones;
+        this.invs = invs;
         initComponents();
-        
+
         anteP.setText(antecedentes);
         descP.setText(estatus);
         nombreP.setText(nombre);
@@ -52,17 +64,51 @@ public class Registro extends javax.swing.JFrame {
         descP.setText(descripcion);
         aplicacionesP.setText(aplicaciones);
         estatusP.setText(estatus);
-        for(Investigador i : invs)
-        ((CustomTableModel)jTable1.getModel()).addRow(new String[]{i.toString()});
-        
+        for (Investigador i : invs) {
+            ((CustomTableModel) jTable1.getModel()).addRow(new String[]{i.toString()});
+        }
+
     }
-     public Registro(Proyecto p) {
-         this.pro=p;
+
+    public Registro(Proyecto p) {
+        anteP.setText(p.getAntecedentes());
+        descP.setText(p.getDescripcion());
+        nombreP.setText(p.toString());
+        ventajasP.setText(p.getVentajas());
+        descP.setText(p.getDescripcion());
+        aplicacionesP.setText(p.getAplicaciones());
+        estatusP.setText(p.getEstatus());
+        this.p=p;
+        Connection con;
+        try {
+            con = Conexion.getConexion();
+            for (int i : p.getIdInvestigadores()) {
+                ((CustomTableModel) jTable1.getModel()).addRow(new Object[]{Conexion.consultValues(con, "select nombre investigadores where idInvestigadores=?", new Object[]{i})});
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         initComponents();
     }
-    
+
     public Proyecto formulario;
-    
+
+    Registro(int idInstitucion) {
+        idInst = idInstitucion;
+ try {
+            Connection con = Conexion.getConexion();
+            oficinas = Conexion.rstoOficinas(con, "select * from oficina where idOficina=?", new Object[]{idInst});
+            clusters = Conexion.rstoClusters(con, "select * from cluster where fkOficina=?", new Object[]{oficinas[0].getId()});
+            updateComboBoxes(2);
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        initComponents();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,6 +137,11 @@ public class Registro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        cluster = new javax.swing.JComboBox<String>();
+        jLabel10 = new javax.swing.JLabel();
+        oficina = new javax.swing.JComboBox<String>();
+        creatP1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,34 +199,67 @@ public class Registro extends javax.swing.JFrame {
         jTable1.setModel(new CustomTableModel("investigadores"));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel9.setText("Cluster");
+
+        cluster.setModel(new javax.swing.DefaultComboBoxModel(clusters!=null ? clusters : new Cluster[]{} ));
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel10.setText("Oficina:");
+
+        oficina.setModel(new javax.swing.DefaultComboBoxModel(oficinas!=null?oficinas:new Oficina[]{}));
+        oficina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oficinaActionPerformed(evt);
+            }
+        });
+
+        creatP1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        creatP1.setText("Actualizat");
+        creatP1.setEnabled(false);
+        creatP1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creatP1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(385, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(creatP)
-                        .addGap(242, 242, 242))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(6, 6, 6)
+                        .addComponent(oficina, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(27, 27, 27)
+                        .addComponent(cluster, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(aplicacionesP, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(aplicacionesP, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(agregarInv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(70, 70, 70))))
+                                .addGap(6, 6, 6)
+                                .addComponent(agregarInv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(70, 70, 70))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(creatP)
+                .addGap(227, 227, 227))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 67, Short.MAX_VALUE)
+                    .addGap(0, 68, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(177, 177, 177)
@@ -203,24 +287,40 @@ public class Registro extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(estatusP, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(ventajasP, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGap(0, 68, Short.MAX_VALUE)))
+                    .addGap(0, 69, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(433, Short.MAX_VALUE)
+                    .addComponent(creatP1)
+                    .addGap(232, 232, 232)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(349, Short.MAX_VALUE)
+                .addContainerGap(350, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(agregarInv)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(aplicacionesP, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(creatP)
-                .addGap(20, 20, 20))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(oficina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(cluster, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(aplicacionesP, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(creatP, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 84, Short.MAX_VALUE)
@@ -254,6 +354,11 @@ public class Registro extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(ventajasP, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGap(0, 136, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(598, Short.MAX_VALUE)
+                    .addComponent(creatP1)
+                    .addGap(10, 10, 10)))
         );
 
         pack();
@@ -269,72 +374,92 @@ public class Registro extends javax.swing.JFrame {
 
     private void creatPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creatPActionPerformed
         // TODO add your handling code here:
-        
-        
-        String SQL = "INSERT INTO `ofertas_tecnologicas` Values('"+nombre+"','"+descripcion+"','"+estatus+"','"+ventaja+"','"+antecedentes+"','"+aplicaciones+"')";
-        
-         Statement st;
-         ResultSet rst;
-        
-            try{
-                Connection con = Conexion.getConexion();
-                st = (Statement) con.createStatement();
-                rst = st.executeQuery(SQL);
-                
-                con.close();
-            }catch (Exception e) {
-                e.printStackTrace();
+
+        String SQL = "INSERT INTO `ofertas_tecnologicas` Values(?,?,?,?,?,?,?,?)";
+        String sql2 = "insert into ofertas_Tecnologicas_has_Investigadores Values(?,?); ";
+
+        try {
+            Connection con = Conexion.getConexion();
+
+            Conexion.consultValues(con, SQL, new Object[]{Conexion.getAutonumericField(con, SQL, 1),((Cluster)cluster.getSelectedItem()).getId(), nombre, descripcion, estatus, ventaja, antecedentes, aplicaciones});
+           for(Investigador i : invs)
+            Conexion.consultValues(con, sql2, new Object[]{Conexion.consultValues(con, "select idOT from ofertas_Tecnologicas where nombre= ?", new Object[]{nombre}).getInt(1),i.getId()});
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_creatPActionPerformed
 
     private void agregarInvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarInvActionPerformed
         // TODO add your handling code here:
         cambiarVentana(new Investigadores(nombre, ventaja, antecedentes, descripcion, estatus, aplicaciones));
     }//GEN-LAST:event_agregarInvActionPerformed
-       public void cambiarVentana(JFrame frame) {
+
+    private void oficinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oficinaActionPerformed
+        try {
+            Connection con = Conexion.getConexion();
+            clusters = Conexion.rstoClusters(con, "select * from cluster where fkOficina=?", new Object[]{((Oficina) oficina.getSelectedItem()).getId()});
+            updateComboBoxes(3);
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Start.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_oficinaActionPerformed
+
+    private void creatP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creatP1ActionPerformed
+        String SQL = "INSERT INTO `ofertas_tecnologicas` Values(?,?,?,?,?,?,?,?)";
+        String sql2 = "insert into ofertas_Tecnologicas_has_Investigadores Values(?,?); ";
+
+        try {
+            Connection con = Conexion.getConexion();
+
+            Conexion.consultValues(con, SQL, new Object[]{Conexion.getAutonumericField(con, SQL, 1),((Cluster)cluster.getSelectedItem()).getId(), nombre, descripcion, estatus, ventaja, antecedentes, aplicaciones});
+           for(Investigador i : invs)
+            Conexion.consultValues(con, sql2, new Object[]{Conexion.consultValues(con, "select idOT from ofertas_Tecnologicas where nombre= ?", new Object[]{nombre}).getInt(1),i.getId()});
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_creatP1ActionPerformed
+    public void cambiarVentana(JFrame frame) {
         frame.setVisible(true);
         this.dispose();
     }
-       
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+
+    void updateComboBoxes(int c) {
+        switch (c) {
+            case 2:
+                if (oficinas != null) {
+                    DefaultComboBoxModel df = new DefaultComboBoxModel(oficinas)!=null ? new DefaultComboBoxModel(oficinas): new DefaultComboBoxModel();
+                    System.out.println(df.toString());
+                    oficina.setModel(new DefaultComboBoxModel(oficinas));
+                } else {
+                    oficina.setModel(new javax.swing.DefaultComboBoxModel(new Oficina[]{}));
+                    oficina.setEnabled(false);
+                    cluster.setEnabled(false);
                 }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+            case 3:
+                if (clusters != null) {
+                    cluster.setModel(new javax.swing.DefaultComboBoxModel(clusters));
+                } else {
+                    cluster.setModel(new javax.swing.DefaultComboBoxModel(new Cluster[]{}));
+                    cluster.setEnabled(false);
+                }
         }
-        //</editor-fold>
-        //</editor-fold>
-        
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new Registro().setVisible(true);
-        });
-    }
-
+        }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarInv;
     private javax.swing.JTextField anteP;
     private javax.swing.JTextField aplicacionesP;
+    private javax.swing.JComboBox<String> cluster;
     private javax.swing.JButton creatP;
+    private javax.swing.JButton creatP1;
     private javax.swing.JTextField descP;
     private javax.swing.JTextField estatusP;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -342,10 +467,12 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton logo;
     private javax.swing.JTextField nombreP;
+    private javax.swing.JComboBox<String> oficina;
     private javax.swing.JTextField ventajasP;
     // End of variables declaration//GEN-END:variables
 }

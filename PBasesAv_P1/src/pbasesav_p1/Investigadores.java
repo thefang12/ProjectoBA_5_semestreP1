@@ -74,38 +74,7 @@ public class Investigadores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tablaResult.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Resultados"
-            }
-        ));
+        tablaResult.setModel(new CustomTableModel("Resultados"));
         tablaResult.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaResultMouseClicked(evt);
@@ -113,38 +82,7 @@ public class Investigadores extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tablaResult);
 
-        tablaSelec.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Seleccionados"
-            }
-        ));
+        tablaSelec.setModel(new CustomTableModel("Resultados"));
         jScrollPane4.setViewportView(tablaSelec);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -184,6 +122,11 @@ public class Investigadores extends javax.swing.JFrame {
         });
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Login/logo2.png"))); // NOI18N
+        logo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoActionPerformed(evt);
+            }
+        });
 
         Aplicar.setText("Aplicar Cambios");
         Aplicar.addActionListener(new java.awt.event.ActionListener() {
@@ -319,6 +262,11 @@ public class Investigadores extends javax.swing.JFrame {
         // TODO add your handling code here:
         cambiarVentana(new Registro(nombre, ventajas, antecedentes, descripcion, estatus, aplicaciones, invsSelec));
     }//GEN-LAST:event_AplicarActionPerformed
+
+    private void logoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoActionPerformed
+        // TODO add your handling code here:
+        cambiarVentana(new Start());
+    }//GEN-LAST:event_logoActionPerformed
        public void cambiarVentana(JFrame frame) {
         frame.setVisible(true);
         this.dispose();
