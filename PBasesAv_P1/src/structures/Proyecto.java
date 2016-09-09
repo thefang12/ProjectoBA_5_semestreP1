@@ -40,7 +40,7 @@ public class Proyecto {
   
     
 
-    public String getNombre() {
+    public String toString() {
         return nombre;
     }
 

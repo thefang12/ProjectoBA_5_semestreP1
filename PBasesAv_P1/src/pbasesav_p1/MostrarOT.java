@@ -18,7 +18,7 @@ public class MostrarOT extends javax.swing.JFrame {
      */
     public MostrarOT(Proyecto ProMostrar) {
         initComponents();
-        NombreOT.setText(ProMostrar.getNombre());
+        NombreOT.setText(ProMostrar.toString());
         DescripcionOT.setText(ProMostrar.getDescripcion());
         EstatusOT.setText(ProMostrar.getEstatus());
         VentajasOT.setText(ProMostrar.getVentajas());
@@ -26,6 +26,9 @@ public class MostrarOT extends javax.swing.JFrame {
         ColaboradoresOT.setText(ProMostrar.getIdInvestigadores().toString());
         AplicacionesOT.setText(ProMostrar.getAplicaciones());
         
+    }
+    public MostrarOT() {
+        initComponents();
     }
 
     /**
